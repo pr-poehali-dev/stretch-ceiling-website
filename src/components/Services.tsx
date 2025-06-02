@@ -37,13 +37,13 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6">
             Виды натяжных потолков
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Предлагаем широкий выбор натяжных потолков для любого интерьера и
             бюджета
           </p>
@@ -53,45 +53,43 @@ const Services = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-gray-800/50 border border-purple-500/30 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-300 group hover:shadow-lg hover:shadow-purple-500/20"
             >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-xl text-gray-900">
+              <CardHeader className="p-0">
+                <div className="relative overflow-hidden rounded-t-lg">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="text-2xl font-bold text-cyan-400 mb-1">
+                      {service.price}
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-6">
+                <CardTitle className="text-xl text-white mb-3 group-hover:text-cyan-400 transition-colors">
                   {service.title}
                 </CardTitle>
-                <CardDescription>{service.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-4">
-                  <div className="text-2xl font-bold text-blue-600 mb-2">
-                    {service.price}
-                  </div>
-                  <ul className="space-y-1">
-                    {service.features.map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-2 text-sm text-gray-600"
-                      >
-                        <Icon
-                          name="Check"
-                          size={16}
-                          className="text-green-500"
-                        />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                <CardDescription className="text-gray-300 mb-4">
+                  {service.description}
+                </CardDescription>
+                <div className="space-y-2 mb-6">
+                  {service.features.map((feature, featureIndex) => (
+                    <div
+                      key={featureIndex}
+                      className="flex items-center gap-2 text-sm"
+                    >
+                      <Icon name="Check" size={16} className="text-green-400" />
+                      <span className="text-gray-300">{feature}</span>
+                    </div>
+                  ))}
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  <Icon name="Calculator" size={16} />
-                  Рассчитать стоимость
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 border-0 text-white font-medium">
+                  Заказать расчет
                 </Button>
               </CardContent>
             </Card>
